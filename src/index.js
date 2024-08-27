@@ -24,18 +24,21 @@ function fibs(n) {
 }
 
 function fibsRec(n) {
-    if (n <= 0) {
-        return;
+    let fibNum = 0;
+    if (n === 0) {
+        const fibArray = [0];
+        return fibArray;
     }
     if (n === 1) {
-        const fibArray = new Array(1);
-        fibArray[0] = 0;
+        const fibArray = [0, 1];
         return fibArray;
     }
     else {
-        const fibArray = new Array(n);
+        const currArray = fibsRec(n - 1);
+        currArray.push(currArray[currArray.length - 1] + currArray[currArray.length - 2]);
+        return currArray;
     }
-    return;
+    // return;
 }
 
 function facsRec(n) {
@@ -53,5 +56,7 @@ function facsRec(n) {
 console.log(facsRec(5));
 
 fibs(8);
+
+console.log(fibsRec(8));
 
 // console.log(fibs(8));
