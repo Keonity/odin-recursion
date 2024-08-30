@@ -24,6 +24,7 @@ function fibs(n) {
 }
 
 function fibsRec(n) {
+    console.log("This function was printed recursively.");
     let fibNum = 0;
     if (n === 0) {
         const fibArray = [0];
@@ -53,10 +54,52 @@ function facsRec(n) {
     }
 };
 
-console.log(facsRec(5));
+function merge(firstArray, secondArray) {
+    let newArray = [];
+
+    while (firstArray.length > 0 && secondArray.length > 0) {
+        if (firstArray[0] < secondArray[0]) {
+            newArray.push(firstArray.shift());
+        }
+        else {
+            newArray.push(secondArray.shift());
+        }
+    }
+
+    while (firstArray.length) {
+        newArray.push(firstArray.shift());
+    }
+    while (secondArray.length) {
+        newArray.push(secondArray.shift());
+    }
+
+    return newArray;
+}
+
+function mergeSort(array) {
+    if (array.length < 2) {
+        return array;
+    }
+    else {
+        let mid = Math.floor(array.length / 2);
+        // console.log(`MergeSort: ` + array);
+        let leftHalf = array.slice(0, mid);
+        let rightHalf = array.slice(mid);
+        return merge(mergeSort(leftHalf), mergeSort(rightHalf));
+    }
+}
+
+
+// console.log(facsRec(5));
 
 fibs(8);
 
 console.log(fibsRec(8));
+
+let mergeArray = [3, 2, 1, 13, 8, 5, 0, 1];
+// console.log(`MergeArray Type: ` + typeof mergeArray);
+// console.log(mergeArray);
+
+console.log(`Merge Sort: ` + mergeSort(mergeArray));
 
 // console.log(fibs(8));
